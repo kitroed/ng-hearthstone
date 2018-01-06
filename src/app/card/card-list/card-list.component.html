@@ -1,30 +1,38 @@
-<md-table #table [dataSource]="dataSource">
+<mat-table #table [dataSource]="dataSource">
 
   <!-- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
+  <!-- Picture -->
+  <ng-container matColumnDef="img">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let card">
+      <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.id}}.png" style="height:256px" />
+    </mat-cell>
+  </ng-container>
+
   <!-- ID Column -->
-  <ng-container mdColumnDef="id">
-    <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
-    <md-cell *mdCellDef="let card"> {{card.id}} </md-cell>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let card"> {{card.id}} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container mdColumnDef="name">
-    <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-    <md-cell *mdCellDef="let card"> {{card.name}} </md-cell>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let card"> {{card.name}} </mat-cell>
   </ng-container>
 
   <!-- DbfId Column -->
-  <!-- <ng-container mdColumnDef="dbfId">
-        <md-header-cell *mdHeaderCellDef> DbfId </md-header-cell>
-        <md-cell *mdCellDef="let card"> {{card.dbfId}} </md-cell>
+  <!-- <ng-container matColumnDef="dbfId">
+        <mat-header-cell *matHeaderCellDef> DbfId </mat-header-cell>
+        <mat-cell *matCellDef="let card"> {{card.dbfId}} </mat-cell>
       </ng-container> -->
 
   <!-- Text Column -->
-  <ng-container mdColumnDef="text">
-    <md-header-cell *mdHeaderCellDef> Text </md-header-cell>
-    <md-cell *mdCellDef="let card" [innerHTML]="card.text"></md-cell>
+  <ng-container matColumnDef="text">
+    <mat-header-cell *matHeaderCellDef> Text </mat-header-cell>
+    <mat-cell *matCellDef="let card" [innerHTML]="card.text"></mat-cell>
   </ng-container>
   <!-- Flavor Column -->
   <!-- Artist Column -->
@@ -38,19 +46,17 @@
   <!-- Rarity Column -->
 
   <!-- Set Column -->
-  <ng-container mdColumnDef="set">
-    <md-header-cell *mdHeaderCellDef> Set </md-header-cell>
-    <md-cell *mdCellDef="let card"> {{card.set}} </md-cell>
+  <ng-container matColumnDef="set">
+    <mat-header-cell *matHeaderCellDef> Set </mat-header-cell>
+    <mat-cell *matCellDef="let card"> {{card.set}} </mat-cell>
   </ng-container>
   <!-- Type Column -->
 
-  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-</md-table>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
 
-<md-paginator #paginator
-  [length]="1344"
-  [pageIndex]="0"
-  [pageSize]="25"
-  [pageSizeOptions]="[5, 10, 25, 100]">
-</md-paginator>
+<mat-paginator #paginator
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100, 500, 1000]">
+</mat-paginator>

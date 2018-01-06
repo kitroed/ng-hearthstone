@@ -15,4 +15,8 @@ export class CardListService {
     // make the HTTP request:
     return this.http.get<Card[]>('https://api.hearthstonejson.com/v1/latest/enUS/cards.collectible.json');
   }
+
+  getCardCount(): number {
+    return 1400;
+  }
 }

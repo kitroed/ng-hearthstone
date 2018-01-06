@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 // import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { MdTable } from '@angular/material';
-import { MdPaginator } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 
@@ -15,8 +15,11 @@ import { CardListService } from './card-list.service';
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css']
 })
-export class CardListComponent implements OnInit {
-  displayedColumns = ['name',
+export class CardListComponent implements AfterViewInit {
+  totalCardCount: number;
+  displayedColumns = [
+    'img',
+    'name',
     'id',
     // 'dbfId',
     'text',
@@ -33,42 +36,24 @@ export class CardListComponent implements OnInit {
     'set'
     // 'type'
   ];
-  dataSource: CardsDataSource;
 
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  dataSource = new CardsDataSource(this.cardListService);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private cardListService: CardListService) { }
 
-
-  ngOnInit() {
-    this.dataSource = new CardsDataSource(this.cardListService, this.paginator);
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 }
 
-export class CardsDataSource extends DataSource<Card> {
-  constructor(private _cardListService: CardListService, private _paginator: MdPaginator) {
+export class CardsDataSource extends MatTableDataSource<Card> {
+  constructor(private cardListService: CardListService) {
     super();
+    this.cardListService.getCardList().subscribe(d => { this.data = d; });
   }
 
-  private allCards: Card[];
-  // public cardCount: number;
-
-  // The connect function is called by the table to get on stream (Observable) containing the data to render
-  connect(): Observable<Card[]> {
-    const displayDataChanges = [this._paginator.page];
-    console.log('connect');
-
-
-    this._cardListService.getCardList().subscribe(d => { this.allCards = d; });
-
-    // this.cardCount = this.allCards.length;
-
-    return Observable.merge(...displayDataChanges).map(() => {
-      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-      return this.allCards.splice(startIndex, this._paginator.pageSize);
-    });
-  }
-
-  disconnect() { }
+  paginator: MatPaginator;
 
 }

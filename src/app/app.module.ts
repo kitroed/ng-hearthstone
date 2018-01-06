@@ -3,11 +3,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { MdTableModule, MdToolbarModule, MdPaginatorModule, MdPaginator } from '@angular/material';
+import { MatTableModule, MatToolbarModule, MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { CardListComponent } from './card/card-list/card-list.component';
 import { CardListService } from './card/card-list/card-list.service';
+// import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,9 @@ import { CardListService } from './card/card-list/card-list.service';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MdTableModule,
-    MdToolbarModule,
-    MdPaginatorModule
+    MatTableModule,
+    MatToolbarModule,
+    MatPaginatorModule
   ],
   providers: [
     CardListService
