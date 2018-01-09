@@ -1,62 +1,68 @@
-<mat-table #table [dataSource]="dataSource" matSort>
+<div class="cards-container">
+  <div class="cards-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
 
-  <!-- Note that these columns can be defined in any order.
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Picture -->
-  <ng-container matColumnDef="img">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let card">
-      <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.id}}.png" style="height:256px" />
-    </mat-cell>
-  </ng-container>
+    <!-- Picture -->
+    <ng-container matColumnDef="img">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let card">
+        <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.id}}.png" style="height:256px" />
+      </mat-cell>
+    </ng-container>
 
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-    <mat-cell *matCellDef="let card"> {{card.id}} </mat-cell>
-  </ng-container>
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let card"> {{card.id}} </mat-cell>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-    <mat-cell *matCellDef="let card"> {{card.name}} </mat-cell>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let card"> {{card.name}} </mat-cell>
+    </ng-container>
 
-  <!-- DbfId Column -->
-  <!-- <ng-container matColumnDef="dbfId">
+    <!-- DbfId Column -->
+    <!-- <ng-container matColumnDef="dbfId">
         <mat-header-cell *matHeaderCellDef> DbfId </mat-header-cell>
         <mat-cell *matCellDef="let card"> {{card.dbfId}} </mat-cell>
       </ng-container> -->
 
-  <!-- Text Column -->
-  <ng-container matColumnDef="text">
-    <mat-header-cell *matHeaderCellDef> Text </mat-header-cell>
-    <mat-cell *matCellDef="let card" [innerHTML]="card.text"></mat-cell>
-  </ng-container>
-  <!-- Flavor Column -->
-  <!-- Artist Column -->
-  <!-- Attack Column -->
-  <!-- CardClass Column -->
-  <!-- Cost Column -->
-  <!-- Elite Column -->
-  <!-- Faction Column -->
-  <!-- Health Column -->
-  <!-- Mechanics Column -->
-  <!-- Rarity Column -->
+    <!-- Text Column -->
+    <ng-container matColumnDef="text">
+      <mat-header-cell *matHeaderCellDef> Text </mat-header-cell>
+      <mat-cell *matCellDef="let card" [innerHTML]="card.text"></mat-cell>
+    </ng-container>
+    <!-- Flavor Column -->
+    <!-- Artist Column -->
+    <!-- Attack Column -->
+    <!-- CardClass Column -->
+    <!-- Cost Column -->
+    <!-- Elite Column -->
+    <!-- Faction Column -->
+    <!-- Health Column -->
+    <!-- Mechanics Column -->
+    <!-- Rarity Column -->
 
-  <!-- Set Column -->
-  <ng-container matColumnDef="set">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Set </mat-header-cell>
-    <mat-cell *matCellDef="let card"> {{card.set}} </mat-cell>
-  </ng-container>
-  <!-- Type Column -->
+    <!-- Set Column -->
+    <ng-container matColumnDef="set">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Set </mat-header-cell>
+      <mat-cell *matCellDef="let card"> {{card.set}} </mat-cell>
+    </ng-container>
+    <!-- Type Column -->
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
-<mat-paginator #paginator
-  [pageSize]="5"
-  [pageSizeOptions]="[5, 10, 25, 100, 500, 1000]">
-</mat-paginator>
+  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100, 500, 1000]">
+  </mat-paginator>
+</div>

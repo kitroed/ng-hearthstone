@@ -3,7 +3,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { MatTableModule, MatToolbarModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {
+  MatTableModule,
+  MatToolbarModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatInputModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { CardListComponent } from './card/card-list/card-list.component';
@@ -22,7 +29,9 @@ import { CardListService } from './card/card-list/card-list.service';
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     CardListService
