@@ -14,7 +14,7 @@
     <ng-container matColumnDef="img">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let card">
-        <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.id}}.png" style="height:256px" />
+        <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.id}}.png" style="height:128px" />
       </mat-cell>
     </ng-container>
 
@@ -44,20 +44,35 @@
     <!-- Flavor Column -->
     <!-- Artist Column -->
     <!-- Attack Column -->
+
     <!-- CardClass Column -->
+    <ng-container matColumnDef="cardClass">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Card Class </mat-header-cell>
+      <mat-cell *matCellDef="let card"> {{card.cardClass}} </mat-cell>
+    </ng-container>
     <!-- Cost Column -->
     <!-- Elite Column -->
     <!-- Faction Column -->
     <!-- Health Column -->
     <!-- Mechanics Column -->
+
     <!-- Rarity Column -->
+    <ng-container matColumnDef="rarity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Rarity </mat-header-cell>
+      <mat-cell *matCellDef="let card"> {{card.rarity}} </mat-cell>
+    </ng-container>
 
     <!-- Set Column -->
     <ng-container matColumnDef="set">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Set </mat-header-cell>
       <mat-cell *matCellDef="let card"> {{card.set}} </mat-cell>
     </ng-container>
+
     <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let card"> {{card.type}} </mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

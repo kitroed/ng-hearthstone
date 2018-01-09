@@ -26,15 +26,15 @@ export class CardListComponent implements AfterViewInit {
     // 'flavor',
     // 'artist',
     // 'attack',
-    // 'cardClass',
+    'cardClass',
     // 'cost',
     // 'elite',
     // 'faction',
     // 'health',
     // 'mechanics',
-    // 'rarity',
-    'set'
-    // 'type'
+    'rarity',
+    'set',
+    'type'
   ];
 
   dataSource = new CardsDataSource(this.cardListService);
